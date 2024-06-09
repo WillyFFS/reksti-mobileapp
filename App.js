@@ -9,16 +9,17 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen 
-      name="home" 
-      component={Home}
-      ></Stack.Screen>
-      <Stack.Screen 
-      name="news" 
-      component={News}
-      ></Stack.Screen>
-    </Stack.Navigator>
-    
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen 
+        name="home" 
+        component={Home}
+        ></Stack.Screen>
+        <Stack.Screen 
+        name="news" 
+        component={News}
+        ></Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
