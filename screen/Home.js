@@ -36,7 +36,7 @@ export default function Home({navigation}) {
 }
   return (
     <View style={styles.container}>
-      <Pressable onPress={()=> {navigation.navigate('news')}} style={{alignSelf:"flex-end"}}><Image style={{width:30, height:30}} source={require("../assets/news.jpg")} /></Pressable>
+      <Pressable onPress={()=> {navigation.navigate('news')}} style={{alignSelf:"flex-end"}}><Image style={{width:30, height:30}} source={require("../assets/news.png")} /></Pressable>
       <Text style={{alignSelf:"flex-start", fontSize:26}}>Danang's Aquarium</Text>
       <Image style={{width:150, height:150}} source={require("../assets/ikan.jpg")} />
       <Text style={{fontSize:16}}>Your aquarium condition is</Text>
