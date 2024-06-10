@@ -36,7 +36,7 @@ export default function News({navigation}) {
         <>
         <Pressable onPress={() => handlePress(data.url)}>
           <View key={index} style={{width:"100%", flexDirection:"row", gap: 10, marginTop:16}}>
-            <Image  style={{width:120, height:120}} source={require("../assets/ikan.jpg")} />
+            <Image  style={{width:120, height:120}} source={{ uri: data.urlToImage }} />
             <View style={{flexDirection:"column", width:"60%", justifyContent:"space-between"}}>
               <View style={{flexDirection:"column"}}>
                 <Text style={{fontSize:16}}>{data.title}</Text>
