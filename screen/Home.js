@@ -1,8 +1,12 @@
 import { Text, View, StyleSheet, Pressable, Image } from 'react-native';
 import { ref,set, onValue} from "firebase/database";
-import db from "../../FirebaseConfig"
+import db from "../FirebaseConfig"
+import { useState, useEffect } from "react";
+
 
 export default function Home({navigation}) {
+  const [temperature, setTemperature] = useState();
+
   async function readDataTemperature() {
     const databaseRef = ref(db, "test/temperature");
     onValue(databaseRef, (snapshot) => {
@@ -33,7 +37,12 @@ export default function Home({navigation}) {
   .catch((error) => {
     console.error("Error setting feed to true:", error);
   });            
-}
+  }
+
+  useEffect(() => {
+    readDataTemperature();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Pressable onPress={()=> {navigation.navigate('news')}} style={{alignSelf:"flex-end"}}><Image style={{width:30, height:30}} source={require("../assets/news.png")} /></Pressable>
@@ -44,7 +53,7 @@ export default function Home({navigation}) {
       <View style={{flexDirection: "row", gap: 15,justifyContent:"center", marginTop:15}}>
         <View style={styles.dataCard}>
           <Image source={require("../assets/suhu.jpg")} style={{width:20, height:20}} />
-          <Text style={{fontSize:12, marginBottom:4}}>28°C</Text>
+          <Text style={{fontSize:12, marginBottom:4}}>{temperature}°C</Text>
           <Text style={{fontSize:8}}>Temperature</Text>
         </View>
         <View style={styles.dataCard}>
@@ -75,7 +84,7 @@ export default function Home({navigation}) {
           <Text style={{fontSize:8}}>Ammonia</Text>
         </View>
       </View>
-      <Pressable style={styles.button}><Text style={{textAlign:"center", color:"white"}}>Feed Now</Text></Pressable>
+      <Pressable style={styles.button} onPress={handleFeed}><Text style={{textAlign:"center", color:"white"}}>Feed Now</Text></Pressable>
       <View style={{flexDirection:"row", width:"100%", justifyContent:"space-between"}}>
         <Text style={{fontSize:12}}>Countdown to the next mealtime:</Text>
         <Text style={{fontSize:12}}>04 : 25 : 39</Text>
